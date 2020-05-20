@@ -1,0 +1,48 @@
+Adopting accepted conventions make things easier for others to follow
+
+Packages:
+    - always lower case
+    - should be unique
+    - use internet domain name, reversed, as a prefix for the package name
+        - change dash to underscore
+        - domain names that start with a number should instead start with an underscore
+        - domain names that start with Java keywords should instead start with an underscore
+    Examples:
+    - Switch.supplier.com   -->     com.supplier._switch
+    - 1world.com            -->     com._1world
+    - Experts-exchange.com  -->     com.experts_exchange
+
+Class Names:
+    - CamelCase
+    - should be nouns
+    - start with a capital letter
+    - each word in name should also start with a capital (e.g. LinkedList)
+
+
+Interface Names:
+    - Capitalized like class names (CamelCase)
+    - Consider what objects will become (like, List) or what they will be doing (like, Comparable) when coming up with a name
+
+Method Names:
+    - mixedCase
+    - often verbs that reflect the function performed or result returned
+
+Constants:
+    - all UPPER_CASE
+    - separate words with underscore
+    - declared using final keyword (static final int MAX_INT;)
+
+Variable Names:
+    - mixedCase
+    - meaningful and indicative
+    - start with a lowercase letter
+    - do not use underscores
+
+Type Parameters:
+    - single characters, capital letters
+        - E: element
+        - K: key
+        - T: type
+        - V: value
+
+
