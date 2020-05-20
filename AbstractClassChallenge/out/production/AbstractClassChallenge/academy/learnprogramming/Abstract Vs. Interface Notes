@@ -1,0 +1,40 @@
+Abstract Class
+- cannot instantiate
+- may contain a mix of methods declared with or without an implementation
+- you can declare fields that are not static and final - public, protected and private concrete methods
+- can extend only one parent class, but can implement multiple interfaces
+- when subclassed, usually provides implementations for all abstract methods in parent class:
+    if it doesn't, the subclass must be declared abstract
+
+Use an abstract class when:;
+- you want to share code among several closely related classes
+- you expect classes that extend your abstract class to have many common methods, fields,
+    or required access modifiers other than public
+- you want to declare non-static or non-final fields which enabes you to define methods that
+    can access and modify the state of an object
+- you have a requirement for your base class to provide a default implementations of certain
+    methods but other methods should be open to being overridden by child classes
+
+Summary: the purpose of an Abstract class is to provide a common definition of a base
+        class that multiple derived classes can share
+
+
+Interface Class
+- the declaration of methods of an Class - not the implementation
+- we define what kind of operation an object can perform, which are defined by the classes that
+    implement the Interface
+- form a contract between the class and the outside world, enforced at build time by the compiler
+- cannot instantiate them and may contain a mix of methods declared with or without implementation.
+- all methods are automatically public and abstract
+- can extend another Interface
+- more flexible and can deal with more stress on the design of your program than implementation
+- introduces points of variation for different implementations - decouples the "what" from "how"
+
+* Since Java 8, Interfaces can contain default methods (with implementation) using keyword "default"
+* Since Java 9, Interfaces can use private methods
+
+Use an Interface when:
+- you expect unrelated classes will implement your interface
+- you want to specify the behavior of a particular data type, but are not concerned with who implements behavior
+- you want to separate different behavior
+- Collections API is a great example (List, LinkedList, ArrayList, etc.)
