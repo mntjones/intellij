@@ -4,16 +4,24 @@ public class Main {
 
     public static void main(String[] args) {
         // scope is main
-        String privateVar = "this is private to main";
+        String var4 = "var4 is private to main";
 
         ScopeCheck scope = new ScopeCheck();
-        System.out.println("scope privateVar = " + scope.getPrivateVar());
-        System.out.println("main privateVar = " + privateVar);
+        scope.useInner();
 
-        scope.timesTwo();
         ScopeCheck.InnerClass innerClass = scope.new InnerClass();
-        System.out.println("==========");
-        innerClass.timesTwo();
+
+        // var 3 not available when variable is private - changed to public
+//       System.out.println("var3 is not accessible here :"  + innerClass.var3);
+
+
+//        System.out.println("scope var1 = " + scope.getVar1());
+//        System.out.println("main var4 = " + var4);
+//
+//        scope.timesTwo();
+//        ScopeCheck.InnerClass innerClass = scope.new InnerClass();
+//        System.out.println("==========");
+//        innerClass.timesTwo();
 
     }
 }
