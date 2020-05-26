@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Theater {
     private final String name;
-    private List<Seat> seats = new ArrayList<>();
+    public List<Seat> seats = new ArrayList<>();
 
     public Theater(String name, int numRows, int seatsPerRow) {
         this.name = name;
@@ -29,6 +29,33 @@ public class Theater {
         Seat requestSeat = new Seat(seatNum);
         // fastest way to find something in a list
         int foundSeat = Collections.binarySearch(seats, requestSeat, null);
+
+        // from Java source code for Collections
+//
+//        int low = 0;
+//        int high = seats.size() - 1;
+//
+//        while (low <= high) {
+//            System.out.println(".");
+//            int mid = (low + high) / 2;
+//            Seat midVal = seats.get(mid);
+//            int comp = midVal.getSeatNumber().compareTo(seatNum);
+//
+//            if (comp < 0) {
+//                low = mid + 1;
+//            }
+//            else if (comp > 0) {
+//                high = mid -1;
+//            }
+//            else {
+//                return seats.get(mid).reserve();
+//            }
+//
+//        // else there is no seat in the theater
+//
+//            System.out.println("There is no seat " + seatNum);
+//            return false;
+//        }
 
         if (foundSeat >= 0) {
             return seats.get(foundSeat).reserve();
@@ -59,7 +86,7 @@ public class Theater {
         }
     }
 
-    private class Seat implements Comparable<Seat>{
+    public class Seat implements Comparable<Seat>{
         private final String seatNumber;
         private boolean reserved = false;
 
