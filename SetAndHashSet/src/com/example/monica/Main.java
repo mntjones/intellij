@@ -95,5 +95,15 @@ public class Main {
         for(HeavenlyBody moon : moons) {
             System.out.println("\t" + moon.getName());
         }
+
+        HeavenlyBody uranus = new HeavenlyBody("Uranus", 34567);
+        planets.add(uranus);
+
+        for(HeavenlyBody planet: planets) {
+            System.out.println(planet.getName() + " : " + planet.getOrbitalPeriod());
+        }
+
+
+
     }
 }
