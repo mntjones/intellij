@@ -30,9 +30,25 @@ public class MapClass {
 
         System.out.println("==========");
         // objects sent back in random order
+
+        //languages.remove("Lisp");
+
+        if (languages.remove("Algol", "an algorithmic language")) {
+            System.out.println("Algol removed");
+        }
+        else {
+            System.out.println("Algol not removed - key/pair not found");
+        }
+
+        System.out.println(languages.replace("Lisp", "a functional programming language with imperative features"));
+        System.out.println(languages.replace("Scala", "this will not be added"));
+        System.out.println("==========");
         for (String key : languages.keySet()) {
             System.out.println(key + " : " + languages.get(key));
         }
+        System.out.println();
+        languages.replace("Lisp", "a functional programming language with imperative features", "therein lies madness");
+        System.out.println(languages.get("Lisp"));
 
     }
 
