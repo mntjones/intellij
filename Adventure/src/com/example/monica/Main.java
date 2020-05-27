@@ -4,10 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+// Challenge: Allow players to type full words or phrases, then move to the correct location
+// based on their input. Phrases such as, "Go West", "run South", or just "East" should work.
+// An attempt to move in an invalid location will print an error message and the player will remain
+// in place. Single letter commands should still work
+
 public class Main {
     private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
 
     public static void main(String[] args) {
+
+//        String example = "how does this work";
+//        String[] exampleArray = example.split(" ");
+//
+//        for (String s : exampleArray) {
+//            System.out.println(s.toUpperCase());
+//        }
+
 
         Scanner scanner = new Scanner(System.in);
 
@@ -22,53 +35,90 @@ public class Main {
         locations.get(1).addExit("E", 3);
         locations.get(1).addExit("S", 4);
         locations.get(1).addExit("N", 5);
-        //locations.get(1).addExit("Q", 0);
 
         locations.get(2).addExit("N", 5);
-        //locations.get(2).addExit("Q", 0);
 
         locations.get(3).addExit("W", 1);
-        //locations.get(3).addExit("Q", 0);
 
-        locations.get(4).addExit("W", 2);
-        //locations.get(4).addExit("Q", 0);
         locations.get(4).addExit("N", 1);
+        locations.get(4).addExit("W", 2);
 
-        //locations.get(5).addExit("Q", 0);
-        locations.get(5).addExit("W", 2);
         locations.get(5).addExit("S", 1);
+        locations.get(5).addExit("W", 2);
+
+        // Instructor's solution:
+//        Map<String, String> vocabulary = new HashMap<String, String>();
+//        vocabulary.put("QUIT", "Q");
+//        vocabulary.put("NORTH", "N");
+//        vocabulary.put("SOUTH", "S");
+//        vocabulary.put("EAST", "E");
+//        vocabulary.put("WEST", "W");
+
 
         int loc = 1;
 
-//        while(true) {
-//            System.out.println(locations.get(loc).getDescription());
-//
-//            if (loc == 0) {
-//                break;
-//            }
-//
-//            Map<String, Integer> exits = locations.get(loc).getExits();
-//            System.out.println("Available exits are: ");
-//            for (String exit: exits.keySet()) {
-//                System.out.print(exit + ", ");
-//            }
-//            System.out.println();
-//
-//            String direction = scanner.nextLine().toUpperCase();
-//
-//            if (exits.containsKey(direction)) {
-//                loc = exits.get(direction);
-//            }
-//            else {
-//                System.out.println("You cannot go in that direction");
-//            }
-//        }
+        while(true) {
+            System.out.println(locations.get(loc).getDescription());
+
+            if (loc == 0) {
+                break;
+            }
+
+            Map<String, Integer> exits = locations.get(loc).getExits();
+            System.out.println("Available exits are: ");
+            for (String exit: exits.keySet()) {
+                System.out.print(exit + ", ");
+            }
+            System.out.println();
 
 
-        // Using split
-        String [] road = "You are standing at the end of a road".split(" ");
-        for (String i : road) {
-            System.out.println(i);
+            String direction = scanner.nextLine().toUpperCase();
+            // Instructor's solution:
+//            if (direction.length() > 1) {
+//                String[] words = direction.split(" ");
+//                for (String word : words){
+//                    if(vocabulary.containsKey(word)) {
+//                        direction = vocabulary.get(word);
+//                        break;
+//                    }
+//                }
+//            }
+
+
+            // Challenge
+
+            String[] directionArray = direction.split(" ");
+
+            for (String s : directionArray) {
+                String word = s.toUpperCase();
+
+                switch (word) {
+                    case "W": case "WEST":
+                        direction = "W";
+                        break;
+                    case "E": case "EAST":
+                        direction = "E";
+                        break;
+                    case "N": case "NORTH":
+                        direction = "N";
+                        break;
+                    case "S": case "SOUTH":
+                        direction = "S";
+                        break;
+                    case "Q": case "QUIT":
+                        direction = "Q";
+                        break;
+                }
+            }
+
+
+
+            if (exits.containsKey(direction)) {
+                loc = exits.get(direction);
+            }
+            else {
+                System.out.println("You cannot go in that direction");
+            }
         }
     }
 }
