@@ -1,14 +1,14 @@
 package com.example.monica;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class StockList {
     private final Map<String, StockItem> list;
 
-    public StockList(Map<String, StockItem> list) {
-        this.list = new HashMap<>();
+    public StockList() {
+        this.list = new LinkedHashMap<>();
     }
 
     public int addStock(StockItem item) {
@@ -40,7 +40,7 @@ public class StockList {
         return list.get(key);
     }
 
-    public Map<String, StockItem> items() {
+    public Map<String, StockItem> Items() {
         return Collections.unmodifiableMap(list);
     }
 
@@ -55,10 +55,10 @@ public class StockList {
             double itemValue = stockitem.getPrice() * stockitem.quantityInStock();
 
             s = s + stockitem + ". There are " + stockitem.quantityInStock() + " in stock.";
-            s = s + "\nValue of items: " + itemValue + "\n";
-            totalCost = itemValue;
+            s = s + "\nValue of items: $" + String.format("%.2f",itemValue) + "\n";
+            totalCost += itemValue;
         }
 
-        return s + "Total stock value: $" + totalCost;
+        return s + "Total stock value: $" + String.format("%.2f", totalCost);
     }
 }
