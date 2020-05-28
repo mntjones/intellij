@@ -11,3 +11,31 @@ Answer:
 The HeavenlyBody class is declared final, so it can't be subclassed. The Java String class
 is also final, which is why t can safely use the instanceOf method without having to worry
 about comparisons with a subclass.
+
+
+
+Challenge:
+
+Modify HeavenlyBody so the class also has a "bodyType" field - star, planet, moon, etc.
+For each type, subclass the HeavenlyBody class so the program can create objects of the
+ appropriate type.
+
+Two types of objects may have same name, as long as they are not the same type of object.
+Only satellites a planet can have are moons.
+
+Test cases:
+1. planets and moons already added should appear in solarSystem and in the sets of moons for
+ the appropriate planets
+
+2. a.equals(b) must return the same result as b.equals(a) - equals is symmetric
+
+3. trying to add a duplicate to a Set must result in no change to that set - original value not
+ changed.
+
+4. trying to add a duplicate to a Map results in the original being replaced by new object
+
+5. 2 bodies with same name, but different designations can be added to same set
+
+6. 2 bodies with same name but different types can be added to the same map, and can be
+ retrieved from map
+
