@@ -4,11 +4,13 @@ public class StockItem implements Comparable<StockItem>{
     private final String name;
     private double price;
     private int quantityStock; // can be initialized later
+    private int reserved;
 
     public StockItem(String name, double price) {
         this.name = name;
         this.price = price;
         this.quantityStock = 0;
+        this.reserved = 0;
     }
 
     public StockItem(String name, double price, int quantityStock) {
@@ -25,8 +27,8 @@ public class StockItem implements Comparable<StockItem>{
         return price;
     }
 
-    public int quantityInStock() {
-        return quantityStock;
+    public int availableQuantity() {
+        return quantityStock - reserved;
     }
 
     public void setPrice(double price) {
@@ -42,6 +44,32 @@ public class StockItem implements Comparable<StockItem>{
             this.quantityStock = newQuantity;
         }
     }
+
+    public int reserveStock (int quantity) {
+        if(quantity <= availableQuantity()) { // use the method, not the field for security
+            reserved += quantity;
+            return quantity;
+        }
+        return 0;
+    }
+
+    public int unreserveStock (int quantity) {
+        if(quantity <= reserved) {
+            reserved -= quantity;
+            return quantity;
+        }
+        return 0;
+    }
+
+    public int finalizeStock(int quantity) {
+        if(quantity <= reserved) {
+            quantityStock -= quantity;
+            reserved -= quantity;
+            return quantity;
+        }
+        return 0;
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -66,7 +94,7 @@ public class StockItem implements Comparable<StockItem>{
 
     @Override
     public int compareTo(StockItem o) {
-        System.out.println("Entering StockItem compareTo");
+//        System.out.println("Entering StockItem compareTo");
         if(this == o) {
             return 0;
         }
@@ -79,6 +107,6 @@ public class StockItem implements Comparable<StockItem>{
 
     @Override
     public String toString() {
-        return this.name + ", cost $" + this.price;
+        return this.name + ", cost $" + this.price + ", reserved: " + this.reserved;
     }
 }
